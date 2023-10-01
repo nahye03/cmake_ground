@@ -28,12 +28,17 @@ message(STATUS "${LIBRARY_NAME}_THIRDPARTY_PATH: ${${LIBRARY_NAME}_THIRDPARTY_PA
 set(${LIBRARY_NAME}_SOURCE_FILES
   src/utils.cpp
 )
+
+# _SOURCE_FILES에 있는 것들을 grab해서 library로 만들어 준다다
 add_library(${LIBRARY_NAME} STATIC
   ${${LIBRARY_NAME}_SOURCE_FILES}
 )
+
+# library만들 때 include까지 포함이 된다
 target_include_directories(${LIBRARY_NAME} PUBLIC
   ${${LIBRARY_NAME}_INCLUDE_PATH}
 )
+# library가 컴파일될때 어떤 option로 컴파일될지(아래의 4개는 기본적으로 넣는게 좋다)
 target_compile_options(${LIBRARY_NAME} PRIVATE
   -Wall -Wextra -Wpedantic -Werror
 )
